@@ -1,0 +1,215 @@
+\documentclass[11pt]{article}		
+\usepackage{amsmath, amsfonts, amsthm, amssymb} 
+\usepackage{color, fullpage, hyperref, graphicx, booktabs}
+\setlength{\parindent}{0pt}
+
+
+\title{Assignment 4}
+\author{Abdul Wahab Derh. UTOR: [removed] S.N: [removed]}
+
+% End Preamble
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\item { % 1
+\begin{theorem}The statement "the sum of the first n odd natural numbers equals $n^2$" is true for all positive integers $n \geq 1$.
+
+\begin{proof}
+By Induction on n:
+Let P(n) be the predicate: the sum of the first n odd natural numbers equals $n^2$ \\
+
+Base Case:
+n = 1
+P(1): $1^2 = 1$. This is true since the sum of first odd natural number is the number one itself. (zero is an even number)\\
+
+Inductive Step: Suppose P(n) is true.
+\begin{align*}
+L.H.S = (n + 1)^2 \\
+R.H.S = n^2 + y
+\end{align*}
+where y is the (n + 1)th odd number.
+Given n, the next odd number after the nth odd number is simply $2n + 1$. Substituting $y = 2n + 1$:
+\begin{align*}
+R.H.S = k^2 + 2k + 1 \\
+= k(k + 1) + 1 \\
+= (k + 1)(k + 1) \\
+= (k + 1)^2
+\end{align*}
+L.H.S = R.H.S therefore $P(n) \implies P(n + 1)$ and the proof is complete.
+
+\end{proof}
+\end{theorem}
+
+}
+\item{ % 2
+\begin{theorem} For all natural numbers $n$, $3^n-1$ is a multiple of $2$
+
+\begin{lemma} An even number added to an even integer is an even integer.
+
+\begin{proof} Directly:
+Let 2m be an even integer, and 2n be another even integer. Then $2m + 2n = 2(m + n)$ which is also even.
+\end{proof}
+\end{lemma}
+
+\begin{proof} By Induction on n: \\
+Let $P(n)$ be the predicate, $3^n - 1$ is a multiple of 2. \\
+
+Base Case: $P(0): 3^0 - 1 = 1 - 1 = 0$ \\
+Since $P(0): 0$ is even, the base case works.
+
+Inductive Hypothesis: Suppose $P(n): 3^n - 1$ is true, which means it is even or a multiple of 2.\\
+Inductive Step: \\
+Prove P(n + 1): \\
+
+Let $y =$ the next number in the sequence of $3^n$. I know I need this number because the original formula uses the same sequence: counting by a multiple of three.
+\begin{align*}
+L.H.S & = 3^{(n + 1)} - 1 \\
+R.H.S & = (3^n - 1) + y \\
+& = 3^n + y - 1
+\end{align*}
+
+Finding y:
+\begin{align}
+3^x + y & = 3^{x + 1} \nonumber \\
+y & = 3^{x + 1} - 3^{x} \nonumber  \\
+& = 3^{x}\cdot 3^1 - 3^{x} \nonumber \\
+& = 3^{x}(3 - 1) \nonumber \\
+& = 2 \cdot 3^{x}\\
+\therefore & \text{ y is a multiple of two thus even as well.}\nonumber
+\end{align}
+
+Substituting (1) into R.H.S:
+\begin{align*}
+R.H.S & = 3^n - 1 + 2\cdot 3^n \text{ (brackets were expanded as well)}\\
+& = 3 \cdot 3^n - 1 \\
+& = 3^{n + 1} - 1
+\end{align*}
+
+R.H.S = L.H.S, moreover, R.H.S is even because $P(n)$ is assumed even and is added to another even number $y$. By Lemma 3, An even number added to an even number is an even number. Since $P(n) \implies P(n + 1)$, by mathematical induction this proof is complete.
+
+\end{proof}
+
+\end{theorem}
+}
+\item { % 3
+\begin{enumerate}
+\item{ % 3a
+Using equation \#2 on the handout, I can substitute the correct variables to get:
+\begin{align*}
+F_n = \frac{((1 + \sqrt{5})/2)^n - ((1 - \sqrt{5})/2)^n}{(1 + \sqrt{5})/2 - (1 - \sqrt{5})/2}
+\end{align*}
+Entering this equation and substituting n = 7, 9, 13, 17 into my calculator gives 13, 17, 233, 1597 respectively.\\
+
+Manually: (Using $F_n = F_{n - 1} + F_{n - 2}$ and $F_0 = 0$, $F_1$ = 1) \\
+\begin{center}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+$n$             & $F_n$ & $n$             & $F_n$ & $n$             & $F_n$ \\ \midrule
+0               & 0     & 6               & 8     & 12              & 144   \\ 
+1               & 1     & \textbf{7}      & \textbf{13}& \textbf{13}& \textbf{233}   \\
+2               & 1     & 8               & 21    & 14              & 377   \\
+3               & 2     & \textbf{9}      & \textbf{34}    & 15     & 610   \\
+4               & 3     & 10              & 55    & 16              & 987   \\
+5               & 5     & 11              & 89    & \textbf{17}     & \textbf{1597}  \\ \bottomrule
+\end{tabular}
+\end{center}
+
+As you can see, they correspond.
+}
+
+\item{ %3b
+\begin{theorem} The $n^{th}$ fibonacci number can be computed using $F_n = \frac{((1 + \sqrt{5})/2)^n - ((1 - \sqrt{5})/2)^n}{(1 + \sqrt{5})/2 - (1 - \sqrt{5})/2}$ where $n \in \mathbb{N}$
+
+\begin{proof} By strong induction on n:\\
+
+Let P(n) be $F_n = \frac{((1 + \sqrt{5})/2)^n - ((1 - \sqrt{5})/2)^n}{(1 + \sqrt{5})/2 - (1 - \sqrt{5})/2}$.
+
+Base Case: Let n = 0, P(0): $F_0 = \frac{((1 + \sqrt{5})/2)^0 - ((1 - \sqrt{5})/2)^0}{(1 + \sqrt{5})/2 - (1 - \sqrt{5})/2} = \frac{1 - 1}{(1 + \sqrt{5})/2 - (1 - \sqrt{5})/2} = 0$ and this is true by definition of fibonacci numbers, that is $F_0 = 0$... \\
+
+Inductive Step:\\
+
+Inductive Hypothesis: Assume $P(n), P(1), ... , P(n-1), P(n)$ is true.\\
+
+Proving P(n + 1):\\
+
+Let $x = (1 + \sqrt{5})/2$\\
+Let $y = (1 - \sqrt{5})/2$\\
+The left-hand side will be the equation, and the right-hand side will be the definition of fibonacci numbers.
+\begin{align*}
+L.H.S = F_{n + 1} & = \frac{x^{n + 1} - y^{n + 1}}{x - y} \\
+R.H.S = F_{((n + 1) - 1)} + F_{((n + 1) - 2)} & = \frac{(x)^{n} - (y)^{n}}{x - y} + \frac{(x)^{n - 1} - (y)^{n - 1}}{x - y} \\
+& = \frac{(x)^{n} - (y)^{n} + (x)^{n - 1} - (y)^{n - 1}}{x - y} \\
+& = \frac{x^n + x^{n-1} - y^{n} - y^{n-1}}{x - y} \\
+& = \frac{x^{n + 1}(x^{-1} + x^{-2}) - y^{n + 1}(y^{-1} + y^{-2})}{x - y}
+\end{align*}
+
+In order to finish this proof, I need to compute $x^{-1} + x^{-2}$ (1) and $y^{-1} + y^{-2}$ (2). I do the former first, substituting x into (1) and simplifying the powers:
+
+\setcounter{equation}{2}
+
+\begin{align}
+x^{-1} + x^{-2} & = \frac{2}{(1 + \sqrt{5})} + \frac{4}{(1 + \sqrt{5})^2}
+= \frac{2(1 + \sqrt{5}) + 4}{(1 + \sqrt{5})^2}
+= \frac{2 + 2\sqrt{5} + 4}{1 + 2\sqrt{5} + 5}
+= 1
+\end{align}
+Now, substituting y into (2) and simplifying the powers:
+\begin{align}
+y^{-1} + y^{-2} & = \frac{2}{(1 - \sqrt{5})} + \frac{4}{(1 - \sqrt{5})^2}
+= \frac{2(1 - \sqrt{5}) + 4}{(1 - \sqrt{5})^2}
+= \frac{2 - 2\sqrt{5} + 4}{1 - 2\sqrt{5} + 5}
+= 1
+\end{align}
+Now, substituting (3) and (4) into R.H.S
+\begin{align*}
+R.H.S &= \frac{x^{n + 1}(1) - y^{n + 1}(1)}{x - y} \\
+&= \frac{x^{n + 1} - y^{n + 1}}{x - y}
+\end{align*}
+L.H.S = R.H.S, $P(n) \implies P(n + 1)$ and the proof is complete.
+\end{proof}
+\end{theorem}
+}
+\end{enumerate}
+}
+
+\item { %4
+\begin{theorem} A tree of height k has $2^{k + 1} - 1$ nodes
+\begin{figure}[h]
+\caption{This is how I pictured the derivation of R.H.S formula. Basically, every perfect binary tree can be divided into a perfect balanced tree if you remove the root node and the sibling (which is also considered perfect when the root node is deleted from it). In any case, one can easily go the opposite way, concluding that the tree of height k is simply \emph{twice the number of nodes as height k-1 (which actually comes from the perfect sibling tree when the root node is absent) plus 1 (which comes from the root node, connecting boths siblings to form one perfect tree)} --- $2S(k - 1) + 1$, where S is a function that represents the number of nodes of height k.}
+\centering
+	\includegraphics[scale=0.65]{trees}
+\end{figure}
+\begin{proof}
+By induction on n: \\
+
+Let P(n) be the statement a tree of height n has $2^{n + 1} - 1$ nodes.\\
+Let S(n) = $2^{n + 1} - 1$ be a function that represents the number of nodes of height tree.
+
+Base Case: Let n = 0, P(0): $2^{(0 +1)} - 1 = 2^1 - 1 = 2 - 1 = 1$ which is true \checkmark.\\
+
+Inductive Step:\\
+
+Induction Hypothesis: Assume P(n) is true. \\
+
+Proving P(n + 1):\\
+
+The left hand side will be the given expression $S(n + 1) = 2^{(n + 1) + 1} - 1$, and the right hand side will be the expression $2S((n + 1) - 1) + 1$ (see Figure 1 to see how I came up with this expression) which represents the number of nodes in terms of the amount of nodes in a perfectly balanced tree of height one less. Since I'm looking for the number of nodes in tree of height $n + 1$, I subbed in $n + 1$ for n in both expressions. In math:
+
+\begin{align*}
+L.H.S & = 2^{((n + 1) + 1)} - 1 \\
+R.H.S & = 2S(n + 1 - 1) - 1 \\
+& = 2S(n) - 1 \\
+& = 2[2^{n + 1} - 1] + 1 \\
+& = 2\cdot 2^{n + 1} - 2 + 1 \\
+& = 2^{((n + 1) + 1)} - 1
+\end{align*} 
+
+$\therefore$ since L.H.S = R.H.S and $P(n) \implies P(n + 1)$, by mathematical induction this proof is complete.
+\end{proof}
+\end{theorem}
+}
+\end{enumerate}
+\end{document}

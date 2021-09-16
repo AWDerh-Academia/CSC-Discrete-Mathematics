@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}		
+\usepackage{amsmath, amsfonts, amsthm, amssymb} 
+\usepackage{color, fullpage, hyperref, graphicx}
+\setlength{\parindent}{0pt}
+
+
+\title{Assignment 3}
+\author{Abdul Wahab Derh. UTOR: [removed] S.N: [removed]}
+
+% End Preamble
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item { % 1
+\begin{enumerate}
+\item{ % 1a
+Q. Transform $(((A \wedge B) \lor (C \wedge D)) \lor E)$ to CNF, which is simply an AND of OR's.\\
+
+The statement says ((A AND B) OR (C AND D)) OR E, which means that either or both A AND B are true, and C AND D are true, or simply E is true. \\
+
+Immediately I know every clause must have an "OR E" because if E is true than the entire series of AND's will be true. I also need to check make sure atleast one of the two AND's evaluate to True. I can do this by checking every left value with a right value using OR to make a clause, where each clause is seperated by an AND. This ensures that atleast one of the two AND statements (in the original question) is satisfied because the series of OR's encompass all possible combinations that constitute an overall True value.\\
+
+Therefore:
+
+\[(A \lor C \lor E) \wedge (A \lor D \lor E) \wedge (B \lor C \lor E) \wedge (B \lor D \lor E)\]
+}
+\item{ % 1b
+\begin{proof}
+Directly. let E = true then all clauses will be true. Or, if A is True and B is True then each clause will be true. Or, if C is True and D is true then every clause will be true. In any of the aforementioned cases, the entire statement will evaluate to true.
+
+$\therefore$ this expression is satisfiable.
+\end{proof}
+}
+\end{enumerate}
+}
+\item { % 2
+\begin{enumerate}
+\item{ % 2a
+For $p \implies q$ in this context of a venn diagram, I know that if P is true and Q is not true (ie: False) then $p \implies q$ is false, and in this context, it means not to shade P. If you shade the middle section (ie P is true and B is true), or if you shade only Q (ie Q is true but P is not true), or if you shade the outside, the implication is true. Picture: (Note: I am not an artist, \emph{also, the outside of the circles represent when both P and Q are false.})\linebreak
+\includegraphics[scale=1]{2a}
+}
+
+\item { %2b
+I mentioned in the past question that $p \implies q$ is false only when p is shaded (see last question for reasoning). Picture (Note: I am not an artist, and only the left-most circle is highlighted.):\linebreak
+\includegraphics[scale=1]{2b}
+}
+
+\item { %2c
+Keeping in mind the definition of p implies q:
+
+
+\includegraphics[scale=0.9]{2c}
+}
+
+\item { %2d
+Based on my chart, only the contrapositive of $p \implies q$ is equivalent to it.\\ 
+
+Note: in $ab = n$ where $a > 0$ and $b > 0$, $ab > 0 \implies n > 0$. Therefore $\sqrt{n}$ is defined.\\
+
+Let $z$ represent $ab = n$\\*
+Let $x$ represent $a \leq \sqrt{n}$\\*
+Let $y$ represent $b \leq \sqrt{n}$\\
+
+Originally: $z \implies (x \lor y)$\\
+
+\begin{proof}
+Using contrapositive: $\lnot (x \lor y) \implies \lnot z$. Looking at $\lnot (x \lor y)$, I can say that it is equal to $(\lnot x \wedge \lnot y)$ because if neither $a \leq \sqrt{n}$ is true nor $b \leq \sqrt{n}$ is true, then (the negation is mutually exclusive which results to) $a > \sqrt{n} \wedge b > \sqrt{n}$. This makes sense because if neither a nor b is less than the square root of n, it follows that both must be greater than the square root of n. $\lnot z$ just means that $ab \neq n$.\\
+
+\begin{align*}
+\lnot x \wedge \lnot y \implies \lnot z
+\end{align*}
+
+Multiplying $a > \sqrt{n}$ and $b > \sqrt{n}$ in this case:
+\begin{align*}
+a \cdot b & > \sqrt{n} \cdot \sqrt{n}\\
+ab & > n \\
+ab & \neq n
+\end{align*}
+
+which proves the contrapositive, thus $z \implies (x \lor y)$ must also be true.
+\end{proof}
+}
+\end{enumerate}
+}
+\item { %3
+\begin{enumerate}
+\item { %3a
+If \emph{x is a real number and y is real number and the product of the two is not rational} then \emph{x is irrational or y is irrational.}\\
+$(x \in \mathbb{R}) \wedge (y \in \mathbb{R}) \wedge (xy \notin \mathbb{Q}) \implies (x \notin \mathbb{Q}) \lor (y \notin \mathbb{Q})$
+}
+
+\item {
+The contrapositive of the above statement is: 
+\begin{align*}
+\lnot ((x \notin \mathbb{Q}) \lor (y \notin \mathbb{Q}))) \implies \lnot ((x \in \mathbb{R}) \wedge (y \in \mathbb{R}) \wedge (xy \notin \mathbb{Q}))\\
+(x \in \mathbb{Q}) \wedge (y \in \mathbb{Q}) \implies (x \notin \mathbb{R}) \lor (y \notin \mathbb{R}) \lor (xy \in \mathbb{Q})
+\end{align*}
+
+\begin{proof}
+By contrapositive: if $x$ and $y$ are both rational numbers (by the contrapositive above), prove their product, $xy \in \mathbb{Q}$. This can be done directly:\\
+
+Let the rational numbers $x = \frac{p}{q}$ and $y = \frac{r}{s}$, where $p,q,r,s \in \mathbb{Z}$\\
+
+Then the product can be shown as:
+\begin{align}
+x\cdot y = \frac{p}{q} \cdot \frac{r}{s} = \frac{pr}{qs}
+\end{align}
+
+$pr$ and $qs$ must be integers because an integer $\times$ integer is an integer. Let the integer products (which produce another integer) $pr = a$ and $qs = b$. Then it can be said that $xy = \frac{a}{b}$, which is the definition of a rational number since $a, b \in \mathbb{Z}$ --- thus $xy \in \mathbb{Q}$.\\
+
+Now that the contrapositive has been proved, by contraposition that we saw above, we can conclude that the original statement (i.e: the contrapositive of the contrapositive) must be true.\\ %(If you feel that I can not relate the previous question with this one, see the truth table below).
+
+Therefore, $(x \in \mathbb{R}) \wedge (y \in \mathbb{R}) \wedge (xy \notin \mathbb{Q}) \implies (x \notin \mathbb{Q}) \lor (y \notin \mathbb{Q})$ is correct.
+\end{proof}
+
+%For a detailed truth table showing that the contrapositive in this case is the same as the original implication, see below: 
+}
+
+\end{enumerate}
+
+\item { %4
+Q. Prove $\exists$ numbers $x, y$ $\notin \mathbb{Q}$ such that $x^y \in \mathbb{Q}$ by considering the number $\sqrt{2}^{\sqrt{2}}$. \\
+
+Let $x = \sqrt{2}^{\sqrt{2}} \notin \mathbb{Q}$. Now consider another number $y = \sqrt{2} \notin \mathbb{Q}$.
+\begin{align*}
+x^y & = (\sqrt{2}^{\sqrt{2}})^{\sqrt{2}}\\
+& = \sqrt{2}^{\sqrt{2} \times \sqrt{2}} \\
+& = \sqrt{2}^{2}\\
+& = 2\\
+x^y & \in \mathbb{Q} \textit{ because 2 can be written as } \frac{2}{1}
+\end{align*}
+$\therefore \exists\ x, y \notin \mathbb{Q}$ to form $x^y \in \mathbb{Q}$.
+}
+
+\item { %5	
+Let $X = \{x_1, x_2, ..., x_n\}$, where all $x_i \in \mathbb{N}$\\*
+Let $A = \frac{\{x_1, x_2, ..., x_n\}}{n} = \frac{\sum\limits_{i=1}^n x_i}{n}$, be the average of the numbers in x.
+
+\setcounter{equation}{0}
+\begin{proof}
+By contradiction: assume there does not exist an $x_i \geq A$ in $X$, thus all $x_i < A$. Then it can be said that:
+\begin{align}
+\sum\limits_{i=1}^n x_i < A\cdot n
+\end{align}
+because there are n x's, all of which are less than A. Rearranging (1) gives:
+\begin{align}
+\frac{\sum\limits_{i=1}^n x_i}{n} < A.
+\end{align} 
+$\rightarrow \leftarrow$
+
+This is a contradiction because we assumed all $x_i < A$ that are in $X$ should resolve to the average $A$, rather it resolved to a value less than $A$. Therefore, by contradiction, there must exist $x_i \geq A$ in $X$ in order to get the average $A$.
+\end{proof}
+}
+}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,237 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{fullpage}
+
+
+\begin{document}
+\centering{Assignment 1: Counting/Arrangements \\
+	Submitted by Abdul Derh\\}
+	
+	% Questions
+	\begin{enumerate}
+		
+		% Answer for 1
+		\item {
+			      \begin{enumerate}
+			      	\item{
+			      	      Given any polygon with n sides (where n $\geq$ 3), I noticed that the triangles formed had a pattern. The triangle $V_1V_2V_3$ was allocated $V_1=n$ vertex choices, $V_2=(n-1)$ vertex choices and last $V_3=(n-3)$ vertex choices. This uses the product rule because there are three steps. $\therefore$ for n vertices, combinations = $n(n-1)(n-2)$, however we must remove three factorial duplicates. This is equivalent to $n$ choose 3. In conclusion, there are
+			      	      \[C(n,3) = \frac{n!}{(n-3)!3!}\]
+			      	      triangles formed by the vertices of a polygon with n sides.
+			      	}
+			      	\item {
+			      		      To figure out the number of times a polygon can use it's vertices to form a triangle (where no sides of the triangle is on the polygon), I found the number of times one side and two sides where on the polygon:\newline
+			      		      \newline
+			      		      Two sides: I am looking for a set of consecutive vertices. By example, when n = 4 {A, B, C, D}, there are $|{ABC, BCD, CDA, DAC}| = 4$ unique combinations. I know by testing more cases, number of consecutive formations = $n$.
+			      		      $\therefore$ there are $n$ cases where a triangle is on two sides of the polygon.\newline
+			      		      \newline
+			      		      One side: Again, there are $n$ ways to make a consecutive pair of TWO vertices [n=4 {A,B,C,D}; {AB, BC, CD, DA}]. But this time, I need one more vertex. I know I only have $n-2$ choices of vertices left, but I don't want to include the case with three sides $\therefore$ I have $n-4$ (one less in the back of AB and one less in the front) to choose one from. $\therefore$ there are $n \cdot C(n-4, 1)$ case where a triangle is with one side of the polygon.\newline
+			      		      \newline
+			      		      Now I subtract with the total from part A:\newline
+			      		      $\therefore$ The number of no-side-on-polygon triangles are:
+			      		      \newline
+			      		      \begin{center}
+			      		      	Total - One side $\bigtriangleup$ - Two side $\bigtriangleup$
+			      		      \end{center}
+			      		      \begin{equation*}
+			      		      	C(n,3) - n - (n\cdot C(n-4,1))
+			      		      	= \frac{n!}{(n-3)!3!} - n - \frac{n\cdot (n-4)!}{(n-4-1)!(1)!}
+			      		      \end{equation*}
+			      		      \begin{equation}
+			      		      	= \frac{n!}{(n-3)!\cdot 3!} - n - n\cdot (n-4)!
+			      		      \end{equation}
+			      		      This equation works for when n $\geq$ 5. When $n=5$, there are no possibilities for no-side-on-polygon triangles (evaluating equation (1) - above - at $n=0$):
+			      		      \begin{equation*}
+			      		      	\frac{5!}{(5-3)!\cdot 3!} - 5 - 5\cdot (1)!
+			      		      	= \frac{20}{2\cdot 1} - 10
+			      		      	= 0
+			      		      \end{equation*}
+			      		      Therefore, for $3 \leq n < 5$, there must be 0 possibilities as well.
+			      		}
+			      	\end{enumerate}
+			      }
+			      
+			      % Answer for 2
+			\item {
+				      \begin{enumerate}
+				      	\item{
+				      	      % 2a
+				      	      Each of the first three options is a combination selection without repetition. The final is the sum of a series of combinations of toppings (from none to 4), where order doesn't matter. Each step has k more steps, therefore, I will use the product rule:
+				      	      
+				      	      First, I will show $C(n,1) = n$
+				      	      \begin{eqnarray*}
+				      	      	C(n,r) = \frac{n!}{(n-r)!\cdot r!}
+				      	      	\implies
+				      	      	C(n,1)= \frac{n\cdot (n-1)\cdot\ldots\cdot 1}{(n-1)\cdot\ldots\cdot 1\cdot 1}
+				      	      	= n
+				      	      \end{eqnarray*}
+				      	      $\therefore C(n,1) = n$
+				      	}
+				      	
+				      	The equation to solve:
+				      	\begin{eqnarray*}
+				      		C(2,1)\cdot C(3,1)\cdot C(5,1)\cdot \sum\limits_{i=0}^4{C(8,i)}
+				      	\end{eqnarray*}
+				      	\[=30 * [C(8,0) + C(8,1) + C(8,2) + C(8,3) + C(8,4)]\]
+				      	\[=30 * [1 + 8 + 28 + 56 + 70]\]
+				      	\[=30 * 163=4890\]
+				      	$\therefore$ there are $4890$ different sandwiches I could order.
+				      	\item {
+				      		      % 2b
+				      		      I need to find the number of combinations for 3 different sandwiches first. I will simply use the combinations formula (4890 choose 3).
+				      		      \begin{equation*}
+				      		      	C(4890, 3)
+				      		      	=\frac{4890!}{4887!\cdot 3!}
+				      		      	=\frac{4890\cdot 4889\cdot 4888}{3!}
+				      		      	=19476407080
+				      		      \end{equation*}
+				      		      $\therefore$ there are $19,476,407,080$ combinations of 3 different sandwiches I could order.
+				      		      However, I need to also add the orders of 3 similar sandwiches, and 2 similar sandwiches to this.\newline	
+				      		      \newline	
+				      		      It must be 4890 total options for 3 similar sandwiches, because there are 4890 combinations to make one sandwich and there is a 1:1 correspondence between a unique sandwich and three of the same sandwiches.\newline	
+				      		      \newline	
+				      		      1,1,1; 2,2,2; ...; 4890,4890,4890 = 4890 total choices\newline	
+				      		      $\therefore$ 19476407080 + 4890 = 19476411970 combinations of 3 different sandwiches and 3 similar sandwiches.\newline	
+				      		      \newline	
+				      		      It must be 4890*4889 total options for 2 similar sandwiches. The first factor comes for the same reason above (1,1; 2,2; ...; 4890,4890 = 4890 total choices). The second factor, is one less than the first, otherwise I would have three of the same.\newline	
+				      		      \newline
+				      		      19476411970 + 4890*4889 = 19500319180\newline	
+				      		      \newline	
+				      		      $\therefore$ there are 19500319180 combinations of 3 sandwiches I could come home with.
+				      		}
+				      	\end{enumerate}
+				      }
+				      
+				      % Answer for 3
+				\item {
+					      \begin{enumerate}
+					      	\item{
+					      	      There are 5 ways to arrange b - the last space is left for an 'a': $C(5,1)=5$, then there are 3 unique ways to arrange an a with b $C(3,1) = 3 \therefore$ by the product rule:
+					      	      \begin{equation*}
+					      	      	C(5, 1) \cdot C(3,1) = 5*3 = 15
+					      	      \end{equation*}
+					      	      There are four spots left for ${a,a,n,n}$. I choose 2 spots for the a (from four) and then four spots for the n (from 2). I use the product rule because there are 2 steps that take place:
+					      	      \begin{equation*}
+					      	      	C(4,2) \cdot C(2,2) = \frac{4!}{2!\cdot 2!} = 6
+					      	      \end{equation*}
+					      	      Finally, I use the product rule on the last two steps which are: \# of ways to make "ba" $\cdot$ \# of ways to place the remaining characters:
+					      	      \begin{equation*}
+					      	      	15 \cdot 6 = 90
+					      	      \end{equation*}
+					      	      $\therefore$ there are 90 ways to make the pattern "ba" in the arrangements of ${b,a,n,a,n,a}$
+					      	}
+					      	\item {
+					      		      In this case, I try to make the pattern bnn occur. I select 1 of 4 spots, leaving 2 spots for 2 n's:
+					      		      \begin{equation*}
+					      		      	C(4,1)\cdot C(2,2)\cdot C(3,3)
+					      		      	= 4\cdot 1\cdot 1
+					      		      	= 4
+					      		      \end{equation*}
+					      		      Now I subtract $4$ from the total possible arrangements. This is just an arrangement with repetition:
+					      		      \begin{equation*}
+					      		      	P(6;1,2,3)=\frac{6!}{1!\cdot 2!\cdot 3!}=\frac{6\cdot 5\cdot 4}{1\cdot 2\cdot 1\cdot}=\frac{120}{2}=60
+					      		      \end{equation*}
+					      		      \[60 - 4 = 56\]
+					      		      $\therefore$ there are 56 ways to make the pattern bnn never occur.
+					      		}
+					      		\item {
+					      			      I begin by placing the a's in any spot but one. Then I place the n's in the remaining spots (minus one). Then I put the b in the last place.
+					      			      \begin{equation*}
+					      			      	C(5,3)\cdot C(2,2)\cdot C(1,1) = \frac{5!}{(5-3)!\cdot 3!}\cdot 1\cdot 1 = \frac{5\cdot 4}{2\cdot 1} = \frac{20}{2} = 10
+					      			      \end{equation*}
+					      			}
+					      			$\therefore$ there are 10 ways for b to occur before any a. 
+					      		\end{enumerate}
+					      	}
+					      	
+					      	% Answer for 4
+					      	\item {
+					      		      I begin by calculating the total possibilities for arranging six 3's and four 2's, using $P(n;r_1,r_2...r_k)$ (arrangement with repeats).
+					      		      \begin{equation*}
+					      		      	P(10;6,4)=\frac{10!}{6!\cdot 4!}=\frac{10\cdot 9\cdot 8\cdot 7}{4\cdot 3\cdot 2\cdot 1} = \frac{5040}{24} = 210
+					      		      \end{equation*}
+					      		      $\therefore$ there are 210 total arrangements of six 3's and four 2's.\newline
+					      		      \newline
+					      		      Now I figure out the number of times you can possibly have two's together. There are four distinct ways: 2222, 222;2, 22;22 and 2;2;22.\newline
+					      		      \newline
+					      		      The case with 2222 and 3 6's:
+					      		      \begin{equation*}
+					      		      	P(7;6,1)=\frac{7!}{6!\cdot 1!} = 7
+					      		      \end{equation*}
+					      		      The case with 222, 2 and 3 6's:
+					      		      \begin{equation*}
+					      		      	P(8;6,1,1)=\frac{8!}{6!\cdot 1!\cdot 1!} =8*7=56
+					      		      \end{equation*}
+					      		      The case with 22, 22 and 3 6's:
+					      		      \begin{equation*}
+					      		      	P(9;6,2)=\frac{8!}{6!\cdot 2!}=\frac{56}{2}=28
+					      		      \end{equation*}
+					      		      The case with 22, 2, 2 and 3 6's:
+					      		      \begin{equation*}
+					      		      	P(9;6,(2 + 1))=\frac{9!}{6!\cdot (2 + 1)!}=\frac{504}{6}=84
+					      		      \end{equation*}
+					      		      
+					      		      Now I subtract the initial possible arrangements with the sum of these cases:
+					      		      \begin{equation*}
+					      		      	210 - [7 + 56 + 28 + 84] = 210 - 175 = 35
+					      		      \end{equation*}
+					      		      $\therefore$ there are 35 ways for two's to not be together.
+					      		}
+					      		
+					      		% Answer for 5
+					      		\item {
+					      			      \begin{enumerate}
+					      			      	\item{
+					      			      	      I simply need to choose 3 people from a group of 12 to make one committee consisting of 3 people:
+					      			      	      \begin{equation*}
+					      			      	      	C(12, 3)
+					      			      	      	=\frac{12!}{(12-9)!\cdot 3!}
+					      			      	      	=\frac{12 * 11 * 10}{3 * 2 * 1}
+					      			      	      	=220
+					      			      	      \end{equation*}
+					      			      	      $\therefore$ there are 220 ways to make a committee of three.
+					      			      	}
+					      			      	\item {
+					      			      		      I have to choose 1 person from 12 to be a president, then 1 person from 11 to be a secretary, finally, 1 person from 10 to be a treasurer. In this case, order matters because order determines which position an individual is in. Thus I will use P(12,3):
+					      			      		      \begin{equation*}
+					      			      		      	P(12, 3)
+					      			      		      	=\frac{12!}{(12-3)!}
+					      			      		      	=\frac{12!}{9!}
+					      			      		      	=12*11*10
+					      			      		      	=1320
+					      			      		      \end{equation*}
+					      			      		      $\therefore$ there are 1320 ways to appoint a president, secretary and treasurer.
+					      			      		}
+					      			      	\end{enumerate}
+					      			      }
+					      			      
+					      			      % Answer for 6
+					      			\item {
+					      				      For my first method, I decided to choose 3 people from 10 for decorating, then 2 for sales from remaining 7, and finally, 5 from the remaining five. I used the product rule  because there were three steps.
+					      				      \begin{equation*}
+					      				      	C(10,3)\cdot C(7,2)\cdot C(5,5)
+					      				      	=\frac{10!}{(10-3)!\cdot 3!}\cdot \frac{7!}{(7-2)!\cdot 2!}
+					      				      	\cdot \frac{5!}{(5-5)!\cdot 5!}
+					      				      \end{equation*}
+					      				      \begin{equation*}
+					      				      	=\frac{10!}{7!\cdot 3!}\cdot \frac{7!}{5!\cdot 2!}\cdot \frac{5!}{0!\cdot 5!}
+					      				      	=\frac{10!}{3!\cdot 2!\cdot 5!}
+					      				      	=\frac{10*9*8*7*6}{(3*2*1)(2*1)}
+					      				      	=\frac{5040}{12}
+					      				      	=420
+					      				      \end{equation*}
+					      				      $\therefore$ there are 420 ways to arrange the execs in this criteria. Now I will confirm this by a different method.\newline
+					      				      \newline
+					      				      I also know that this is a case with arrangement with repetitions of various types. In this case, I have $n=10$ people, $k=3$ types and $r_1=3$ for the decorations, $r_2=2$ for the sales and $r_3=5$ for the clean up.
+					      				      \begin{equation*}
+					      				      	P(10;3,2,5) = \frac{10!}{3!\cdot 2!\cdot 5!}
+					      				      	=\frac{10*9*8*7*6}{(3*2*1)(2*1)}
+					      				      	=\frac{5040}{12}
+					      				      	=420
+					      				      \end{equation*}
+					      				      $\therefore$ there are 420 ways to arrange the execs with this criteria.
+					      				}
+					      			\end{enumerate}
+					      			
+\end{document}
